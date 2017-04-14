@@ -1,0 +1,2 @@
+class EntryRoom < ApplicationRecord
+end

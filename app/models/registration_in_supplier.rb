@@ -1,0 +1,2 @@
+class RegistrationInSupplier < ApplicationRecord
+end

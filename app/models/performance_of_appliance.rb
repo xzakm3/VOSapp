@@ -1,0 +1,2 @@
+class PerformanceOfAppliance < ApplicationRecord
+end
