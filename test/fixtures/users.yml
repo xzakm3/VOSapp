@@ -1,1 +1,5 @@
+martinko:
+ email: martinko@martinko.martinko
+ address: martinko
+ password_digest: <%= User.digest('martinko') %>
 
