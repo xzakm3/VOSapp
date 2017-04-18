@@ -12,7 +12,8 @@ class User < ApplicationRecord
 						length: { maximum: 50}
 	has_secure_password
 	validates :password, presence: true,
-						 length: { minimum: 8}
+						 length: { minimum: 8},
+						 allow_nil: true
 
 	def self.digest(string)
     	cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -37,4 +38,5 @@ class User < ApplicationRecord
 	def forget
 		update_attribute(:remember_digest, nil)
 	end
+
 end
