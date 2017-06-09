@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418123003) do
+ActiveRecord::Schema.define(version: 20170424122646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 20170418123003) do
   end
 
   create_table "performance_of_appliances", force: :cascade do |t|
-    t.integer "performance_id"
+    t.integer "performance"
     t.integer "appliance_id"
     t.index ["appliance_id"], name: "index_performance_of_appliances_on_appliance_id", using: :btree
-    t.index ["performance_id"], name: "index_performance_of_appliances_on_performance_id", using: :btree
+    t.index ["performance"], name: "index_performance_of_appliances_on_performance", using: :btree
   end
 
   create_table "performances", force: :cascade do |t|
@@ -92,6 +92,8 @@ ActiveRecord::Schema.define(version: 20170418123003) do
     t.boolean  "admin",                        default: false
     t.string   "activation_digest"
     t.boolean  "activated",                    default: false
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
     t.index ["address"], name: "index_users_on_address", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
   end
@@ -101,7 +103,6 @@ ActiveRecord::Schema.define(version: 20170418123003) do
   add_foreign_key "entry_rooms", "rooms"
   add_foreign_key "entry_rooms", "users"
   add_foreign_key "performance_of_appliances", "appliances"
-  add_foreign_key "performance_of_appliances", "performances"
   add_foreign_key "registration_in_suppliers", "suppliers"
   add_foreign_key "registration_in_suppliers", "users"
   add_foreign_key "scenario_of_appliances", "appliances"

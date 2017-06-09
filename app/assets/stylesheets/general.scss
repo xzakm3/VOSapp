@@ -62,9 +62,9 @@ textarea {
 
 
 
-/************/
-/* REG FORM */
-/************/
+/********/
+/* FORM */
+/********/
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
@@ -104,6 +104,33 @@ input {
 #session_remember_me {
   width: auto;
   margin-left: 0;
+}
+
+#add-button{
+  margin: 2px;
+  float: right
+}
+
+.table th, td{
+  text-align: center;
+}
+
+select{
+  width: 10%;
+  height: 33px;
+}
+
+#search_button{
+  width: 100px;
+  height: 10px;
+}
+
+.users li {
+    line-height: 40px;
+}
+
+.users li a {
+    vertical-align: middle;
 }
 
 /**********/

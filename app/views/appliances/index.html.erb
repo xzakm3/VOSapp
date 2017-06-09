@@ -1,0 +1,100 @@
+<% provide(:title, 'Appliances') %>
+<h1> Appliances </h1>
+<%= link_to "Add", new_user_appliance_path(current_user), id: "add-button", class: "btn btn-success" %>
+<% if @records != nil %>
+  <%= link_to "Group", user_appliances_path(current_user, act: "group"), id: "add-button", class: "btn btn-primary" %>
+<% else %>
+  <%= link_to "Overview", user_appliances_path(current_user), id: "add-button", class: "btn btn-primary" %>
+<% end %>
+<% unless @rooms.nil? %>
+  <%= form_tag user_appliances_path(current_user), method: 'get' do %>
+    <%= collection_select(:record, :room_id, @rooms, :id, :name, prompt: "Choose...") %>
+    <%= submit_tag "Search", class: 'btn btn-primary', id: 'search_button' %>
+  <% end %>
+<% end %>
+<% if false %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <% if @records != nil %>
+        <th>Room</th>
+        <th>Name</th>
+        <th>Cost(€)</th>
+        <th>Performance(kw/h)</th>
+        <th>Count</th>
+      <% else %>
+        <th>Room</th>
+        <th>Count of Appliances</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @records != nil %>
+        <% @records.each do |record| %>
+          <tr>
+            <td><%= record.room.name %></td>
+            <td><%= record.entry.performance_of_appliance.appliance.name %></td>
+            <td><%= record.entry.performance_of_appliance.appliance.cost %></td>
+            <td><%= record.entry.performance_of_appliance.performance %></td>
+            <td><%= record.entry.count %></td>
+            <td><%= link_to "delete", user_appliance_path(current_user, record.entry.performance_of_appliance.appliance, performance_id: record.entry.performance_of_appliance, entry_id: record.entry, room_id: record.room), method: :delete, class: 'btn btn-danger', id: 'add-button', data: {confirm: "You sure?"} %></td>
+          </tr>
+        <% end %>
+        <%= will_paginate @records%>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<% if @hash_of_records != nil %>
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <% i = 0 %>
+    <% @hash_of_records.each do |key, appliances| %>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= i %>" aria-expanded="true" aria-controls="collapse<%= i %>">
+                <%= key %>
+              </a>
+            </h4>
+          </div>
+          <div id="collapse<%= i %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body">
+              <% appliances.each do |name, properties| %>
+                  <div class="row justify-content-center">
+                    <div class="col-md-3 offset-md-2">
+                      <%= name %>
+                    </div>
+                    <div class="col-md-3">
+                      <%= properties[:performance] %>
+                    </div>
+                    <div class="col-md-3">
+                      <%= properties[:count] %>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <% i += 1 %>
+    <% end %>
+  </div>
+<% end %>
+<div class="row">
+  <div class="col-lg-3 offset-lg-3">
+    1 of 2
+  </div>
+  <div class="col-lg-3 offset-lg-6">
+    1 of 2
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    1 of 3
+  </div>
+  <div class="col">
+    1 of 3
+  </div>
+  <div class="col">
+    1 of 3
+  </div>
+</div>

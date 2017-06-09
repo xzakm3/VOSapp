@@ -5,16 +5,22 @@ class UsersController < ApplicationController
 
   def destroy
     User.find_by(id: params[:id]).destroy
+    #DELETE FROM users WHERE users.id = ?, (params[:id]);
     flash[:success] = "User deleted"
     redirect_to(users_path)
   end
 
   def index
-    @users = User.where(activated: true).paginate(page: params[:page])
+    @users = User.paginate(page: params[:page], per_page: 10)
+    @users = @users.sort_by{|user| user[:id]}
   end
 
 	def show
 		@user = User.find(params[:id])
+    if (session[:user_id] != @user.id)
+      flash[:danger] = "You can not switch to another account without log in."
+      redirect_to user_path(User.find(session[:user_id]))
+    end
 	end
 
 	def new
@@ -62,12 +68,10 @@ class UsersController < ApplicationController
     	else
       	   render 'new'
     	end
-  	end
+  end
 
-  	private
-
-    	def user_params
-      		params.require(:user).permit(:email, :address, :password, :password_confirmation)
-    	end
-       
+  private
+    def user_params
+      params.require(:user).permit(:email, :address, :password, :password_confirmation)
+    end   
 end
