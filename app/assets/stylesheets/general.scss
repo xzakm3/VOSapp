@@ -211,4 +211,28 @@ footer ul li {
   }
 }
 
+.head-of-appliance-entry{
+  padding-top: 10px;
+}
+
+.appliance-entry, .head-of-appliance-entry{
+  line-height: 50px;
+  border-top: 1px solid #ddd;
+  text-align: center;
+}
+
+.cross-component{
+  text-align: right;
+  padding-right: 50px;
+}
+
+
+/************/
+/*OVERRIDING*/
+/************/
+
+.panel-body{
+  padding: 0px 15px 0px 15px !important;
+  border-top: none !important;
+}
 

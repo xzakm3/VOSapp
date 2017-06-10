@@ -16,7 +16,7 @@ class AppliancesController < ApplicationController
 					if @hash_of_records[record.room.name] == nil
 						@hash_of_records[record.room.name] = {}
 					end
-					@hash_of_records[record.room.name][record.entry.performance_of_appliance.appliance.name] = {performance: record.entry.performance_of_appliance.performance, count: record.entry.count}
+					@hash_of_records[record.room.name][record.entry.performance_of_appliance.appliance.name] = {appliance_id: record.entry.performance_of_appliance.appliance.id, entry_id: record.entry.id, room_id: record.room.id, performance: record.entry.performance_of_appliance.performance, count: record.entry.count}
 				end
 			end
 			@records = @records.paginate(page: params[:page], per_page: 10)
