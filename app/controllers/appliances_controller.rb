@@ -1,4 +1,5 @@
 class AppliancesController < ApplicationController
+
 	def index
 		@id = session[:user_id]
 		if  params[:act] == "group"
