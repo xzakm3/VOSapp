@@ -1,0 +1,4 @@
+$('.panel-group').html("");
+$('.panel-group').append("<%= escape_javascript render(partial: "entries", locals: {hash_of_recrods: @hash_of_records }) %>");
+$('#myModal').modal('hide');
+$('#myModal').find("input[type=text],input[type=number]").val('');

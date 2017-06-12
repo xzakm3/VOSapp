@@ -217,15 +217,31 @@ footer ul li {
   padding-top: 10px;
 }
 
+.appliance-entry{
+  background-color:white;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+}
+
+.appliance-entry:hover{
+  background-color: #f2f2f2;
+}
+
 .appliance-entry, .head-of-appliance-entry{
   line-height: 50px;
   border-top: 1px solid #ddd;
   text-align: center;
 }
 
-.cross-component{
+.UD-components{
   text-align: right;
   padding-right: 50px;
+}
+
+#remove-component{
+  margin-left: 20px;
 }
 
 #save-button{

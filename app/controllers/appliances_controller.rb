@@ -1,28 +1,25 @@
 class AppliancesController < ApplicationController
 
-	def index
+	before_action :get_all_records, only: :index
+	
+	def get_all_records
 		@id = session[:user_id]
-		if  params[:act] == "group"
-			@groups = EntryRoom.joins(:room, :entry).where("entry_rooms.user_id = ?", @id).group('name').sum('count')
+		@rooms = EntryRoom.joins(:room).where("entry_rooms.user_id = ?", @id).distinct("entry_rooms.room_id")
+		@rooms = @rooms.map { |record|  record.room}
+		@rooms.uniq!
+		if params[:record] && params[:record][:room_id]
+			@records = EntryRoom.joins(:room, :entry, "JOIN performance_of_appliances p ON performance_of_appliance_id = p.id", "JOIN appliances a ON appliance_id = a.id").where("entry_rooms.user_id = ? AND entry_rooms.room_id = ?", @id, params[:record][:room_id]).merge(Room.order(name: :ASC))
 		else
-			@rooms = EntryRoom.joins(:room).where("entry_rooms.user_id = ?", @id).distinct("entry_rooms.room_id")
-			@rooms = @rooms.map { |record|  record.room}
-			@rooms.uniq!
-			if params[:record] && params[:record][:room_id]
-				@records = EntryRoom.joins(:room, :entry, "JOIN performance_of_appliances p ON performance_of_appliance_id = p.id", "JOIN appliances a ON appliance_id = a.id").where("entry_rooms.user_id = ? AND entry_rooms.room_id = ?", @id, params[:record][:room_id]).merge(Room.order(name: :ASC))
-			else
-				@records = EntryRoom.joins(:room, :entry, "JOIN performance_of_appliances p ON performance_of_appliance_id = p.id", "JOIN appliances a ON appliance_id = a.id").where("entry_rooms.user_id = ?", @id).merge(Room.order(name: :ASC))
-				@hash_of_records = {}
-				@records.each do |record|
-					if @hash_of_records[record.room.name] == nil
-						@hash_of_records[record.room.name] = {}
-					end
-					@hash_of_records[record.room.name][record.entry.performance_of_appliance.appliance.name] = {appliance_id: record.entry.performance_of_appliance.appliance.id, entry_id: record.entry.id, room_id: record.room.id, performance: record.entry.performance_of_appliance.performance, count: record.entry.count}
+			@records = EntryRoom.joins(:room, :entry, "JOIN performance_of_appliances p ON performance_of_appliance_id = p.id", "JOIN appliances a ON appliance_id = a.id").where("entry_rooms.user_id = ?", @id).merge(Room.order(name: :ASC))
+			@hash_of_records = {}
+			@records.each do |record|
+				if @hash_of_records[record.room.name] == nil
+					@hash_of_records[record.room.name] = {}
 				end
+				@hash_of_records[record.room.name][record.entry.performance_of_appliance.appliance.name] = {appliance_id: record.entry.performance_of_appliance.appliance.id, entry_id: record.entry.id, room_id: record.room.id, performance: record.entry.performance_of_appliance.performance, count: record.entry.count}
 			end
-			@records = @records.paginate(page: params[:page], per_page: 10)
-			return @records, @hash_of_records
 		end
+		@hash_of_records
 	end
 
 	def destroy
@@ -56,13 +53,15 @@ class AppliancesController < ApplicationController
 		user = current_user
 		Appliance.transaction do
 			appliance = Appliance.where(name: params[:appliance][:name]).first_or_create(appliance_params)
-        	performance_of_appliance = appliance.performance_of_appliances.where(performance_of_appliance_params).first_or_create(performance_of_appliance_params)
-        	entry = performance_of_appliance.entries.where(entry_params).first_or_create(entry_params)
-        	room = Room.where(name: params[:room][:name]).first_or_create(room_params)
-        	user.entry_rooms.where(user_id: user.id, entry_id: entry.id, room_id: room.id).first_or_create(user_id: user.id, entry_id: entry.id, room_id: room.id)
-        	
-        	flash.now[:success] = "Successfull adition of new appliance"
-			render 'new'
+			performance_of_appliance = appliance.performance_of_appliances.where(performance_of_appliance_params).first_or_create(performance_of_appliance_params)
+			entry = performance_of_appliance.entries.where(entry_params).first_or_create(entry_params)
+			room = Room.where(name: params[:room][:name]).first_or_create(room_params)
+			user.entry_rooms.where(user_id: user.id, entry_id: entry.id, room_id: room.id).first_or_create(user_id: user.id, entry_id: entry.id, room_id: room.id)
+			flash.now[:success] = "Successfull adition of new appliance"
+			get_all_records
+			respond_to do |format|
+				format.js {render 'appliances/create'}
+			end
 		end
 
 	end 
