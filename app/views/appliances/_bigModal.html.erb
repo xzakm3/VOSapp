@@ -1,0 +1,37 @@
+<!-- Modal -->
+<div class="modal fade" id="bigModal" tabindex="-1" role="dialog" aria-labelledby="bigModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="bigModalLabel">New appliance</h4>
+      </div>
+      <%= form_tag(user_appliances_path(current_user), remote: true) do %>
+          <div class="modal-body">
+            <%= fields_for :room do |builder| %>
+                <%= builder.label :name, "Room" %>
+                <%= builder.text_field :name, class: 'form-control' %>
+            <% end %>
+
+            <%= fields_for :appliance do |builder| %>
+                <%= builder.label :name, "Name" %>
+                <%= builder.text_field :name, class: 'form-control' %>
+
+                <%= builder.label :cost %>
+                <%= builder.number_field :cost, class: 'form-control' %>
+            <% end %>
+
+            <%= label_tag :performance, "Performance(kw/h)" %>
+            <%= number_field_tag :performance, params[:performance], class: 'form-control' %>
+
+            <%= label_tag :count %>
+            <%= number_field_tag :count, params[:count], class: 'form-control' %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <%= submit_tag "Save", class: "btn btn-primary", id: "save-button" %>
+          </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

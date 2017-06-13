@@ -1,23 +1,32 @@
 class AppliancesController < ApplicationController
 
 	before_action :get_all_records, only: :index
-	
+
+	def get_records_for(room_id)
+		@id = session[:user_id]
+		records_for_specific_room = EntryRoom.joins(:room, :entry, "JOIN performance_of_appliances p ON performance_of_appliance_id = p.id", "JOIN appliances a ON appliance_id = a.id").where("entry_rooms.user_id = ? AND entry_rooms.room_id = ?", @id, room_id)
+		@hash_for_specific_record = {}
+		records_for_specific_room.each do |record|
+			if @hash_for_specific_record[record.room.name] == nil
+				@hash_for_specific_record[record.room.name] = {}
+			end
+			@hash_for_specific_record[record.room.name][record.entry.performance_of_appliance.appliance.name] = {appliance_id: record.entry.performance_of_appliance.appliance.id, entry_id: record.entry.id, room_id: record.room.id, performance: record.entry.performance_of_appliance.performance, count: record.entry.count}
+		end
+	end
+
 	def get_all_records
 		@id = session[:user_id]
-		@rooms = EntryRoom.joins(:room).where("entry_rooms.user_id = ?", @id).distinct("entry_rooms.room_id")
-		@rooms = @rooms.map { |record|  record.room}
-		@rooms.uniq!
 		if params[:record] && params[:record][:room_id]
-			@records = EntryRoom.joins(:room, :entry, "JOIN performance_of_appliances p ON performance_of_appliance_id = p.id", "JOIN appliances a ON appliance_id = a.id").where("entry_rooms.user_id = ? AND entry_rooms.room_id = ?", @id, params[:record][:room_id]).merge(Room.order(name: :ASC))
+			@records = EntryRoom.joins(:room, :entry, "JOIN performance_of_appliances p ON performance_of_appliance_id = p.id", "JOIN appliances a ON appliance_id = a.id").where("entry_rooms.user_id = ? AND entry_rooms.room_id = ?", @id, params[:record][:room_id])
 		else
 			@records = EntryRoom.joins(:room, :entry, "JOIN performance_of_appliances p ON performance_of_appliance_id = p.id", "JOIN appliances a ON appliance_id = a.id").where("entry_rooms.user_id = ?", @id).merge(Room.order(name: :ASC))
-			@hash_of_records = {}
-			@records.each do |record|
-				if @hash_of_records[record.room.name] == nil
-					@hash_of_records[record.room.name] = {}
-				end
-				@hash_of_records[record.room.name][record.entry.performance_of_appliance.appliance.name] = {appliance_id: record.entry.performance_of_appliance.appliance.id, entry_id: record.entry.id, room_id: record.room.id, performance: record.entry.performance_of_appliance.performance, count: record.entry.count}
+		end
+		@hash_of_records = {}
+		@records.each do |record|
+			if @hash_of_records[record.room.name] == nil
+				@hash_of_records[record.room.name] = {}
 			end
+			@hash_of_records[record.room.name][record.entry.performance_of_appliance.appliance.name] = {appliance_id: record.entry.performance_of_appliance.appliance.id, entry_id: record.entry.id, room_id: record.room.id, performance: record.entry.performance_of_appliance.performance, count: record.entry.count}
 		end
 		@hash_of_records
 	end
@@ -43,7 +52,10 @@ class AppliancesController < ApplicationController
 				appliance.destroy
 			end
 		end
-		redirect_to user_appliances_path(current_user)
+		get_records_for(room[:id])
+		respond_to do |format|
+			format.js {render 'appliances/destroy'}
+		end
 	end
 
 	def new

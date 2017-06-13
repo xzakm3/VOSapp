@@ -61,7 +61,6 @@ textarea {
 }
 
 
-
 /********/
 /* FORM */
 /********/
@@ -106,11 +105,28 @@ input {
   margin-left: 0;
 }
 
-#add-button{
-  padding: 7px 15px;
-  font-size: 15px;
-  margin: 2px;
-  float: right
+.add-buttons{
+  padding-bottom: 3px;
+}
+
+#add-button-bottom, .add-buttons{
+  float: right;
+  margin-right: 15px;
+  border: none;
+  background: transparent;
+  padding: 0px 0px;
+}
+
+#add-button-bottom:hover{
+  color:blue;
+}
+
+#add-component:hover{
+  color: blue;
+}
+
+#plus-component{
+  padding-top: 3px;
 }
 
 .table th, td{
@@ -247,6 +263,20 @@ footer ul li {
 #save-button{
   width: 10%;
 }
+
+.collapsible-link{
+  padding-right: 88%;
+  text-decoration: none;
+}
+
+.collapsible-link:active, .collapsible-link:focus{
+  outline: none;
+}
+
+.collapsible-link:hover{
+  text-decoration: none;
+}
+
 /************/
 /*OVERRIDING*/
 /************/
@@ -255,4 +285,5 @@ footer ul li {
   padding: 0px 15px 0px 15px !important;
   border-top: none !important;
 }
+
 
