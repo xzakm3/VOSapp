@@ -64,11 +64,14 @@ class AppliancesController < ApplicationController
 	def create
 		user = current_user
 		Appliance.transaction do
-			appliance = Appliance.where(name: params[:appliance][:name]).first_or_create(appliance_params)
-			performance_of_appliance = appliance.performance_of_appliances.where(performance_of_appliance_params).first_or_create(performance_of_appliance_params)
-			entry = performance_of_appliance.entries.where(entry_params).first_or_create(entry_params)
-			room = Room.where(name: params[:room][:name]).first_or_create(room_params)
-			user.entry_rooms.where(user_id: user.id, entry_id: entry.id, room_id: room.id).first_or_create(user_id: user.id, entry_id: entry.id, room_id: room.id)
+			text = params[:room]
+			text = text.strip
+			params[:room] = text
+			@appliance = Appliance.where(name: params[:appliance][:name]).first_or_create(appliance_params)
+			@performance_of_appliance = @appliance.performance_of_appliances.where(performance_of_appliance_params).first_or_create(performance_of_appliance_params)
+			@entry = @performance_of_appliance.entries.where(entry_params).first_or_create(entry_params)
+			@room = Room.where(name: params[:room]).first_or_create(name: params[:room])
+			user.entry_rooms.where(user_id: user.id, entry_id: @entry.id, room_id: @room.id).first_or_create(user_id: user.id, entry_id: @entry.id, room_id: @room.id)
 			flash.now[:success] = "Successfull adition of new appliance"
 			get_all_records
 			respond_to do |format|
@@ -81,7 +84,7 @@ class AppliancesController < ApplicationController
 	private
 
   		def appliance_params
-    		params.require(:appliance).permit(:name, :cost)
+    		params.require(:appliance).permit(:name)
   		end
 
   		def performance_of_appliance_params
@@ -93,7 +96,7 @@ class AppliancesController < ApplicationController
   		end
 
   		def room_params
-  			params.require(:room).permit(:name)
+  			params.permit(:room)
   		end
 
 end

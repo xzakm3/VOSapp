@@ -1,5 +1,6 @@
 <% provide(:title, 'Appliances') %>
 <h1> Appliances </h1>
+<%= render partial: "smallModal" %>
 <%= render partial: "bigModal" %>
 <% if @hash_of_records != nil %>
   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">

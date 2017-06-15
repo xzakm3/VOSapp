@@ -8,17 +8,12 @@
       </div>
       <%= form_tag(user_appliances_path(current_user), remote: true) do %>
           <div class="modal-body">
-            <%= fields_for :room do |builder| %>
-                <%= builder.label :name, "Room" %>
-                <%= builder.text_field :name, class: 'form-control' %>
-            <% end %>
+            <%= label_tag :room, "Room" %>
+            <%= text_field_tag :room, params[:room], class: 'form-control' %>
 
             <%= fields_for :appliance do |builder| %>
                 <%= builder.label :name, "Name" %>
                 <%= builder.text_field :name, class: 'form-control' %>
-
-                <%= builder.label :cost %>
-                <%= builder.number_field :cost, class: 'form-control' %>
             <% end %>
 
             <%= label_tag :performance, "Performance(kw/h)" %>

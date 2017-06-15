@@ -11,9 +11,19 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require bootstrap
 //= require jquery_ujs
 //= require turbolinks
+//= require addButtons
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+    $('.add-buttons').click(function(){
+        var room = $(this).parent().children('a').text();
+        $( '#smallModalLabel' ).html(room);
+        $( '.hidden-room-name' ).val(room)
+    });
+})
 
 
