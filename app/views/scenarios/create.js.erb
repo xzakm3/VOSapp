@@ -1,23 +1,28 @@
-if($('#bigModal').is(':visible')){
-    $('#text').html("ha");
-    $('.nav-pills').html("")
-        .append("<%= escape_javascript render(partial: "menu") %>");
-
-    $('#bigModal').modal('hide')
-        .find("input[type=text],input[type=number]").val('');
-}
-else if($('#smallModal').is(':visible')){
+if($('#smallModal').is(':visible')){
     var room_in_modal = $( '#smallModalLabel' ).text();
-    var room_in_li_tag;
-    $('.nav-pills > li').each(function(){
-        room_in_li_tag = $(this).find('a').text();
-        if (room_in_li_tag == room_in_modal){
-            $('#text').html("stalo sa");
-            $('#body-table').append()
-            $("<%= escape_javascript render(partial: "newAppliance") %>").insertAfter($('[class^="row appliance-entry"]').last());
+    var room_in_collapse;
+    room_in_modal = $.trim(room_in_modal);
+    $('#smallModal')
+        .modal('hide')
+        .find("input[type=text],input[type=number]").val('');
+    $( '.panel-default' ).each(function () {
+        room_in_collapse = $(this).find('a').text();
+        room_in_collapse = $.trim(room_in_collapse);
+        if (room_in_collapse === room_in_modal){
+            if ($(this).find('a').attr('aria-expanded') == 'true'){
+                $(this).find('.panel-body').append("<%= escape_javascript render(partial: "newAppliance", locals: {hash_of_recrods: @hash_of_records }) %>");
+            }
+            else{
+                $('.panel-group').html("")
+                                 .append("<%= escape_javascript render(partial: "entries", locals: {hash_of_recrods: @hash_of_records }) %>");
+            }
             return false;
         }
     })
-    $('#smallModal').modal('hide')
-                    .find("input[type=text],input[type=number]").val('');
+}
+else if($('#bigModal').is(':visible')){
+    $('.panel-group').html("")
+                     .append("<%= escape_javascript render(partial: "entries", locals: {hash_of_recrods: @hash_of_records }) %>");
+    $('#bigModal').modal('hide')
+                  .find("input[type=text],input[type=number]").val('');
 }

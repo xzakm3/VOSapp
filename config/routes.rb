@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'scenarios/create'
+  get 'appliances/create'
 
   get 'sessions/new'
 

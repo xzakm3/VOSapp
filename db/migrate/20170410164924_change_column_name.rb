@@ -1,7 +1,7 @@
 class ChangeColumnName < ActiveRecord::Migration[5.0]
   def change
-  	rename_column :appliances, :nazov, :name
-  	rename_column :appliances, :cena, :cost
+  	rename_column :scenarios, :nazov, :name
+  	rename_column :scenarios, :cena, :cost
   	rename_column :entry_rooms, :zaznam_id, :entry_id
   	rename_column :entry_rooms, :miestnost_id, :room_id
   	rename_column :entrys, :vykon_spotrebica_id, :performance_of_appliance_id
@@ -16,7 +16,7 @@ class ChangeColumnName < ActiveRecord::Migration[5.0]
   	rename_column :scenario_of_appliances, :pocet_zapnutych, :number_of_up
   	rename_column :scenario_of_appliances, :scenar_id, :scenario_id
   	rename_column :scenario_of_appliances, :spotrebic_id, :appliance_id
-  	rename_column :scenarios, :zataz, :load
+  	rename_column :appliances, :zataz, :load
   	rename_column :suppliers, :meno, :name
   	rename_column :suppliers, :fixna_suma, :fix_sum
   	rename_column :users, :adresa, :address

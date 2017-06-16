@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20170613201255) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "appliances", force: :cascade do |t|
+  create_table "scenarios", force: :cascade do |t|
     t.text "name"
     t.index ["name"], name: "index_appliances_on_name", unique: true, using: :btree
   end
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20170613201255) do
     t.index ["scenario_id"], name: "index_scenario_of_appliances_on_scenario_id", using: :btree
   end
 
-  create_table "scenarios", force: :cascade do |t|
+  create_table "appliances", force: :cascade do |t|
     t.integer "load"
     t.integer "user_id"
     t.index ["user_id"], name: "index_scenarios_on_user_id", using: :btree
@@ -101,10 +101,10 @@ ActiveRecord::Schema.define(version: 20170613201255) do
   add_foreign_key "entry_rooms", "entries"
   add_foreign_key "entry_rooms", "rooms"
   add_foreign_key "entry_rooms", "users"
-  add_foreign_key "performance_of_appliances", "appliances"
+  add_foreign_key "performance_of_appliances", "scenarios"
   add_foreign_key "registration_in_suppliers", "suppliers"
   add_foreign_key "registration_in_suppliers", "users"
-  add_foreign_key "scenario_of_appliances", "appliances"
   add_foreign_key "scenario_of_appliances", "scenarios"
-  add_foreign_key "scenarios", "users"
+  add_foreign_key "scenario_of_appliances", "appliances"
+  add_foreign_key "appliances", "users"
 end

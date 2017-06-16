@@ -6,7 +6,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="bigModalLabel">New appliance</h4>
       </div>
-      <%= form_tag(user_scenarios_path(current_user), remote: true) do %>
+      <%= form_tag(user_appliances_path(current_user), remote: true) do %>
           <div class="modal-body">
             <%= label_tag :room, "Room" %>
             <%= text_field_tag :room, params[:room], class: 'form-control' %>

@@ -1,17 +1,11 @@
-<% provide(:title, 'Appliances') %>
-<h1> Appliances </h1>
-<%= render partial: "smallModal" %>
 <%= render partial: "bigModal" %>
-<% if @hash_of_records != nil %>
-  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+<%= render partial: "smallModal" %>
+<span id="rooms-span" class="<%= @rooms[0].name %>"></span>
+<div id="view">
+  <ul class="nav nav-pills nav-stacked inside-content">
+    <%= render partial: "menu", locals: {rooms: @rooms } %>
+  </ul>
+  <div class="table_entries inside-content">
     <%= render partial: "entries", locals: {hash_of_recrods: @hash_of_records } %>
   </div>
-<% end %>
-<div class="row">
-  <button type="button" class="btn-lg" id="add-button-bottom" data-toggle="modal" data-target="#bigModal">
-    <span class="glyphicon glyphicon-plus" id="plus-component" aria-hidden="true"></span>
-  </button>
-</div>
-
-<div id="text">
 </div>
