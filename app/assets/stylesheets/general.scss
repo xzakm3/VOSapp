@@ -275,6 +275,53 @@ footer ul li {
   padding: 0px 0px;
 }
 
+#add-button-row-background{
+  text-align: center;
+  line-height: 40px;
+  border: 2px dashed;
+  border-radius: 5px;
+  border-color: gray;
+  margin-top: 5px;
+}
+
+#add-button-row{
+  font-weight: bold;
+  color: gray;
+  font-size: 18px;
+  padding-left: 40%;
+  padding-right: 40%;
+  outline: none;
+}
+
+#add-button-li-background{
+  text-align: center;
+  border: 2px dashed;
+  border-radius: 5px;
+  border-color: gray;
+  margin-top: 7px !important;
+  background: transparent !important;
+}
+
+#add-button-li{
+  font-weight: bold;
+  color: gray;
+  font-size: 15px;
+  padding-left: 30%;
+  padding-right: 30%;
+  outline: none;
+}
+
+
+#add-button-row:hover{
+  text-decoration: none;
+}
+
+#add-button-li:hover{
+  background: transparent !important;
+}
+
+
+
 #add-button-bottom:hover{
   color:blue;
 }
@@ -317,8 +364,16 @@ ul.nav-pills{
   float: left;
 }
 
+#hidden-htag{
+  display: none;
+}
+
 footer{
   clear: left;
+}
+.appliance-entry, #add-button-row-background {
+  margin-left: -5px !important;
+  margin-right: -5px !important;
 }
 
 /************/

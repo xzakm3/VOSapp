@@ -1,0 +1,2 @@
+$('.table_entries').html("")
+                .append("<%= escape_javascript render(partial: "entries", locals: {hash_of_recrods: @hash_of_records }) %>");

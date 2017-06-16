@@ -75,10 +75,9 @@ class AppliancesController < ApplicationController
 			flash.now[:success] = "Successfull adition of new appliance"
 			get_all_records
 			respond_to do |format|
-				format.js {render 'appliances/create'}
+				format.js {render 'scenarios/create'}
 			end
 		end
-
 	end 
 
 	private

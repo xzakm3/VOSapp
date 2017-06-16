@@ -18,12 +18,14 @@
 //= require addButtons
 //= require_tree .
 
-$(document).on('turbolinks:load', function() {
-    $('.add-buttons').click(function(){
-        var room = $(this).parent().children('a').text();
-        $( '#smallModalLabel' ).html(room);
-        $( '.hidden-room-name' ).val(room)
-    });
-})
+$(document).on("click", ".rooms-nav-link", function(e){
+    $('#rooms-span').attr('class', $(this).text());
+});
+
+$(document).on("click", "#add-button-row", function(e){
+    $('#smallModalLabel').html($('#rooms-span').attr('class'));
+    $('#hidden-room-name').val($('#smallModalLabel').text());
+});
+
 
 

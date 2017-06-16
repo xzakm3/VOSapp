@@ -1,0 +1,39 @@
+<div class="row head-of-appliance-entry">
+    <div class="col-md-3 col-xs-3">
+      <b>Name</b>
+    </div>
+    <div class="col-md-3 col-xs-3">
+      <b>Performance(kw/h)</b>
+    </div>
+    <div class="col-md-3 col-xs-3">
+      <b>Count</b>
+    </div>
+</div>
+<div id="body-table">
+    <% @hash_of_records.each do |key, appliances| %>
+        <% appliances.each do |name, properties| %>
+            <div class="row appliance-entry">
+              <div class="col-md-3 col-xs-3">
+                <%= name %>
+              </div>
+              <div class="col-md-3 col-xs-3">
+                <%= properties[:performance] %>
+              </div>
+              <div class="col-md-3 col-xs-3">
+                <%= properties[:count] %>
+              </div>
+              <div class="col-md-3 col-xs-3 UD-components">
+                <%= link_to user_appliance_path(current_user, properties[:appliance_id], entry_id: properties[:entry_id], room_id: properties[:room_id]), method: :delete, data: {confirm: "You sure?"}  do %>
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                <% end %>
+                <%= link_to user_scenario_path(current_user, properties[:appliance_id], entry_id: properties[:entry_id], room_id: properties[:room_id]), method: :delete, data: {confirm: "You sure?"}, remote: true, class: "deletion"  do %>
+                    <span class="glyphicon glyphicon-remove" id="remove-component" aria-hidden="true"></span>
+                <% end %>
+              </div>
+            </div>
+        <% end %>
+    <% end %>
+    <div class="row" id="add-button-row-background">
+      <%= link_to "Pridaj", '#', id: 'add-button-row',  data: {toggle: 'modal', target: '#smallModal'} %>
+    </div>
+</div>

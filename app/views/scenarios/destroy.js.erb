@@ -1,0 +1,17 @@
+$('.deletion').bind('ajax:success', function() {
+    $(this).closest('.appliance-entry').slideUp(500, function() {
+        $(this).remove();
+    });
+    /*var room = $(this).closest( '.panel-default' );
+    var panel_body_class = room.find("div");
+    if (panel_body_class.children('div.appliance-entry').length == 1){
+        room.slideUp(500, function() {
+            (this).remove();
+        });
+    }
+    else{
+        $(this).closest('.appliance-entry').slideUp(500, function() {
+            $(this).remove();
+        });
+    }*/
+});

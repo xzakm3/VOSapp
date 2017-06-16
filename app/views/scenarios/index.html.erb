@@ -1,0 +1,11 @@
+<%= render partial: "bigModal" %>
+<%= render partial: "smallModal" %>
+<span id="rooms-span" class="<%= @rooms[0].name %>"></span>
+<div id="view">
+  <ul class="nav nav-pills nav-stacked inside-content">
+    <%= render partial: "menu", locals: {rooms: @rooms } %>
+  </ul>
+  <div class="table_entries inside-content">
+    <%= render partial: "entries", locals: {hash_of_recrods: @hash_of_records } %>
+  </div>
+</div>
