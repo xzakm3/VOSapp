@@ -1,6 +1,5 @@
-<h1>
-	<%= @user.address %></h1>
-<br> 
-email: <%= @user.email %>
-<br>
-heslo: <small><%= @user.password_digest %></small>
+<% provide(:title, 'Dashboard') %>
+<h1>Scenarios</h1>
+<div class = "row">
+  <%= link_to "Create", new_user_scenario_path(current_user), class: "btn btn-primary", id: "new-scenario-button" %>
+</div>

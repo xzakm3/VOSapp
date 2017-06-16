@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'scenarios/create'
+
   get 'sessions/new'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :edit, :create, :update]
   resources :users do
     resources :appliances, only: [:new, :index, :create, :destroy]
+    resources :scenarios, only: [:new, :index, :create, :destroy]
   end
 
 

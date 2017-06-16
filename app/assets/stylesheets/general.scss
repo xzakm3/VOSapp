@@ -105,30 +105,6 @@ input {
   margin-left: 0;
 }
 
-.add-buttons{
-  padding-bottom: 3px;
-}
-
-#add-button-bottom, .add-buttons{
-  float: right;
-  margin-right: 15px;
-  border: none;
-  background: transparent;
-  padding: 0px 0px;
-}
-
-#add-button-bottom:hover{
-  color:blue;
-}
-
-#add-component:hover{
-  color: blue;
-}
-
-#plus-component{
-  padding-top: 3px;
-}
-
 .table th, td{
   text-align: center;
 }
@@ -229,8 +205,12 @@ footer ul li {
   }
 }
 
-.head-of-appliance-entry{
+.head-of-appliance-entry {
   padding-top: 10px;
+}
+
+.appliance-entry:nth-child(odd){
+  background: #e1e1ea;
 }
 
 .appliance-entry{
@@ -256,13 +236,6 @@ footer ul li {
   padding-right: 50px;
 }
 
-#remove-component{
-  margin-left: 20px;
-}
-
-#save-button{
-  width: 10%;
-}
 
 .collapsible-link{
   padding-right: 80%;
@@ -275,6 +248,77 @@ footer ul li {
 
 .collapsible-link:hover{
   text-decoration: none;
+}
+
+
+.add-buttons{
+  padding-bottom: 3px;
+}
+
+.nav-stacked{
+  max-width: 200px;
+}
+
+#remove-component{
+  margin-left: 20px;
+}
+
+#save-button{
+  width: 10%;
+}
+
+#add-button-bottom, .add-buttons{
+  float: right;
+  margin-right: 15px;
+  border: none;
+  background: transparent;
+  padding: 0px 0px;
+}
+
+#add-button-bottom:hover{
+  color:blue;
+}
+
+#add-component:hover{
+  color: blue;
+}
+
+#plus-component{
+  padding-top: 3px;
+}
+
+#new-scenario-button{
+  float: right;
+}
+
+.nav-pills > li {
+  margin-top: 0px !important;
+}
+
+.nav-pills > li > a{
+    border-radius: 0px;
+    outline: none;
+}
+
+.nav-pills > li > a:hover{
+  background-color:  #ccccff !important;
+}
+
+ul.nav-pills{
+  width: 16%;
+}
+
+.table_entries{
+  margin-left: 15px;
+  width: 78%;
+}
+
+.inside-content{
+  float: left;
+}
+
+footer{
+  clear: left;
 }
 
 /************/
