@@ -27,5 +27,10 @@ $(document).on("click", "#add-button-row", function(e){
     $('#hidden-room-name').val($('#smallModalLabel').text());
 });
 
+$(document).on("click", ".nav-pills > li > a", function(e){
+    $('li.active').removeClass("active");
+    $(this).parent().addClass("active");
+});
+
 
 

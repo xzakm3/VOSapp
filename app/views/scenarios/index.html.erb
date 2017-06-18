@@ -3,24 +3,4 @@
 <div class = "row">
   <%= link_to "Vytvor", new_user_scenario_path(current_user), class: "btn btn-primary", id: "new-scenario-button" %>
 </div>
-<% @scenarios.each_with_index do |scenario, index| %>
-    <div class="scenario-around">
-      <span class="important-text">Scenár <%= index+1 %></span>
-      <div class="scenario">
-        <% scenario.scenario_of_appliances.each do |scenario_of_appliance| %>
-            <div class="row scenario-entry">
-              <div class="col-md-3 col-xs-3">
-                <%= scenario_of_appliance.entry_room.entry.performance_of_appliance.appliance.name %>
-              </div>
-              <div class="col-md-3 col-xs-3">
-                <span><%= get_text(scenario_of_appliance.number_of_up) %> </span>
-              </div>
-            </div>
-
-        <% end %>
-      </div>
-    </div>
-    <div class="result-around">
-      <p class="result-line"> Záťaž: <span class="result-text"><%= scenario.power %> A</span></p>
-    </div>
-<% end %>
+<%= render partial: "scenarios" %>

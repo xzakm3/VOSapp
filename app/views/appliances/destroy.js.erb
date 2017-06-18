@@ -1,4 +1,4 @@
-$('.deletion').bind('ajax:success', function() {
+$('.deletion-appliance').bind('ajax:success', function() {
     $(this).closest('.appliance-entry').slideUp(500, function() {
         $(this).remove();
     });

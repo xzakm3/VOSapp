@@ -12,7 +12,6 @@ else if($('#smallModal').is(':visible')){
     $('.nav-pills > li').each(function(){
         room_in_li_tag = $(this).find('a').text();
         if (room_in_li_tag == room_in_modal){
-            $('#text').html("stalo sa");
             $('#body-table').append()
             $("<%= escape_javascript render(partial: "newAppliance") %>").insertAfter($('[class^="row appliance-entry"]').last());
             return false;

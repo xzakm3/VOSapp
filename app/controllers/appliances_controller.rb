@@ -1,4 +1,6 @@
 class AppliancesController < ApplicationController
+	include AppliancesHelper
+
 	before_action :index, only: :new
 	before_action :get_id, only: [:index, :create]
 
@@ -45,8 +47,14 @@ class AppliancesController < ApplicationController
 		performance = entry.performance_of_appliance
 		appliance = performance.appliance
 		EntryRoom.transaction do
-			if entry_room.scenario_of_appliances.empty?
-				entry_room.scenario_of_appliances.delete_all
+			if entry_room.scenario_of_appliances.any?
+				entry_room.scenario_of_appliances.each do |scenario_of_appliance|
+					scenario = scenario_of_appliance.scenario
+					scenario_of_appliance.destroy
+					if scenario.scenario_of_appliances.empty?
+						scenario.destroy
+					end
+				end
 			end
 			entry_room.destroy
 			if room.entry_rooms.empty?
@@ -98,7 +106,6 @@ class AppliancesController < ApplicationController
 			else
 				format.html{render 'index' }
 			end
-
 		end
 	end
 

@@ -210,7 +210,7 @@ footer ul li {
 }
 
 .appliance-entry:nth-child(odd){
-  background: #e1e1ea;
+  background: #f7f7f9;
 }
 
 .appliance-entry{
@@ -255,11 +255,7 @@ footer ul li {
   padding-bottom: 3px;
 }
 
-.nav-stacked{
-  max-width: 200px;
-}
-
-.scenario{
+.scenario-information{
   border-left: 5px solid #eee;
   padding-left: 10px;
   margin-top: 20px;
@@ -307,6 +303,11 @@ footer ul li {
 
 .appliance-entry:nth-child(2n+1){
   background: #f7f7f9;
+}
+
+.deletion-scenario{
+  color: #ddd;
+  float: right;
 }
 
 #remove-component{
@@ -404,23 +405,6 @@ footer ul li {
 .nav-pills > li > a{
     border-radius: 0px;
     outline: none;
-}
-
-.nav-pills > li > a:hover{
-  background-color:  #ccccff !important;
-}
-
-ul.nav-pills{
-  width: 16%;
-}
-
-.table_entries{
-  margin-left: 15px;
-  width: 78%;
-}
-
-.inside-content{
-  float: left;
 }
 
 footer{
