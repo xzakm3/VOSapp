@@ -1,7 +1,16 @@
 class ScenariosController < ApplicationController
 
 
-  before_action :get_all_records, only: :index
+  U = 230
+  before_action :get_all_records, only: :new
+
+  def index
+    @hash_of_scenarios = {}
+
+    @scenarios = Scenario.where(user_id: current_user)
+
+    h = 3
+  end
 
   def get_records_for(room_id)
     @id = session[:user_id]
@@ -63,41 +72,37 @@ class ScenariosController < ApplicationController
   end
 
   def create
-    user = current_user
-    Appliance.transaction do
-      text = params[:room]
-      text = text.strip
-      params[:room] = text
-      @appliance = Appliance.where(name: params[:appliance][:name]).first_or_create(appliance_params)
-      @performance_of_appliance = @appliance.performance_of_appliances.where(performance_of_appliance_params).first_or_create(performance_of_appliance_params)
-      @entry = @performance_of_appliance.entries.where(entry_params).first_or_create(entry_params)
-      @room = Room.where(name: params[:room]).first_or_create(name: params[:room])
-      user.entry_rooms.where(user_id: user.id, entry_id: @entry.id, room_id: @room.id).first_or_create(user_id: user.id, entry_id: @entry.id, room_id: @room.id)
-      flash.now[:success] = "Successfull adition of new appliance"
-      get_all_records
-      respond_to do |format|
-        format.js {render 'scenarios/create'}
+    entry_room_ids = params[:entry_rooms]
+    id = Scenario.last.id + 1
+    i = 0
+
+    Scenario.transaction do
+      scenario = Scenario.new(id: id, user_id: current_user.id)
+      entry_room_ids.each do |entry_room_id|
+        entry_room = EntryRoom.where(id: entry_room_id)[0]
+        performance = entry_room.entry.performance_of_appliance.performance
+        i += (performance*1000)/U
+      end
+      scenario.power = i
+      if scenario.save == false
+        flash[:danger] = "Nepodarilo sa vytvoriť scenár používaných spotrebičov."
+      end
+      entry_room_ids.each do |entry_room_id|
+        entry_room = EntryRoom.where(id: entry_room_id)[0]
+        ups = entry_room.entry.count
+        soa = ScenarioOfAppliance.new(number_of_up: ups, scenario_id: scenario.id, entry_room_id: entry_room_id)
+        if soa.save
+          flash[:success] = "Vytvorili ste si scenár používaných spotrebičov. Pre náhľad choďte na podstránku Dashboard."
+        else
+          flash[:danger] = "Nepodarilo sa vytvoriť scenár používaného spotrebiča."
+        end
+        h = 13
       end
     end
+    redirect_to(new_user_scenario_path(current_user))
   end
 
-  private
 
-  def appliance_params
-    params.require(:appliance).permit(:name)
-  end
-
-  def performance_of_appliance_params
-    params.permit(:performance, :appliance_id)
-  end
-
-  def entry_params
-    params.permit(:count, :performance_of_appliance_id)
-  end
-
-  def room_params
-    params.permit(:room)
-  end
 
 
 end

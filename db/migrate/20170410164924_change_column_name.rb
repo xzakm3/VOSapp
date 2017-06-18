@@ -13,9 +13,9 @@ class ChangeColumnName < ActiveRecord::Migration[5.0]
   	rename_column :registration_in_suppliers, :od, :from
   	rename_column :registration_in_suppliers, :do, :to
   	rename_column :rooms, :druh, :name
-  	rename_column :scenario_of_appliances, :pocet_zapnutych, :number_of_up
-  	rename_column :scenario_of_appliances, :scenar_id, :scenario_id
-  	rename_column :scenario_of_appliances, :spotrebic_id, :appliance_id
+  	rename_column :scenarios, :pocet_zapnutych, :number_of_up
+  	rename_column :scenarios, :scenar_id, :scenario_id
+  	rename_column :scenarios, :spotrebic_id, :appliance_id
   	rename_column :appliances, :zataz, :load
   	rename_column :suppliers, :meno, :name
   	rename_column :suppliers, :fixna_suma, :fix_sum

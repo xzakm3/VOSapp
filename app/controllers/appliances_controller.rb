@@ -45,6 +45,9 @@ class AppliancesController < ApplicationController
 		performance = entry.performance_of_appliance
 		appliance = performance.appliance
 		EntryRoom.transaction do
+			if entry_room.scenario_of_appliances.empty?
+				entry_room.scenario_of_appliances.delete_all
+			end
 			entry_room.destroy
 			if room.entry_rooms.empty?
 				room.destroy

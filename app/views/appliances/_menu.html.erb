@@ -1,6 +1,6 @@
   <% @rooms.each do |room| %>
       <li class="active">
-        <%= link_to  user_scenarios_path(current_user, room_id: room.id), remote: true, class: 'rooms-nav-link' do %>
+        <%= link_to  user_appliances_path(current_user, room_id: room.id), remote: true, class: 'rooms-nav-link' do %>
             <%= room.name %>
         <% end %>
       </li>

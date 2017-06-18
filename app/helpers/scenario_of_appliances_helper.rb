@@ -1,0 +1,2 @@
+module ScenarioOfAppliancesHelper
+end

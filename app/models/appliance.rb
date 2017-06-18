@@ -5,5 +5,5 @@ class Appliance < ApplicationRecord
 	has_many :scenario_of_appliances
 
 	validates :name, presence: true
-				     
+
 end

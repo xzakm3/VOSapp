@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :appliances, only: [:new, :index, :create, :destroy]
     resources :scenarios, only: [:new, :index, :create, :destroy]
+    resources :scenario_of_appliances, only: [:new, :index, :create, :destroy]
   end
 
 

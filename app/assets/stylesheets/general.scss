@@ -259,6 +259,56 @@ footer ul li {
   max-width: 200px;
 }
 
+.scenario{
+  border-left: 5px solid #eee;
+  padding-left: 10px;
+  margin-top: 20px;
+}
+
+.scenario-around{
+  padding: 20px 15px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+  margin-top: 20px;
+}
+
+.important-text{
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.result-around{
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  border-top: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.result-line{
+  padding: 12px 15px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.result-text{
+  color: #2f6f9f;
+  padding-left: 5px;
+}
+
+.scenario-entry{
+  margin: 5px 0px;
+}
+
+.appliance-entry:nth-child(2n+1){
+  background: #f7f7f9;
+}
+
 #remove-component{
   margin-left: 20px;
 }
@@ -280,13 +330,13 @@ footer ul li {
   line-height: 40px;
   border: 2px dashed;
   border-radius: 5px;
-  border-color: gray;
+  border-color: #bbb;
   margin-top: 5px;
 }
 
 #add-button-row{
   font-weight: bold;
-  color: gray;
+  color: #bbb;
   font-size: 18px;
   padding-left: 40%;
   padding-right: 40%;
@@ -297,14 +347,14 @@ footer ul li {
   text-align: center;
   border: 2px dashed;
   border-radius: 5px;
-  border-color: gray;
+  border-color: #bbb;
   margin-top: 7px !important;
   background: transparent !important;
 }
 
 #add-button-li{
   font-weight: bold;
-  color: gray;
+  color: #bbb;
   font-size: 15px;
   padding-left: 30%;
   padding-right: 30%;
@@ -336,6 +386,15 @@ footer ul li {
 
 #new-scenario-button{
   float: right;
+  margin-right: 15px;
+}
+
+#hidden-htag{
+  display: none;
+}
+
+#create-scenario-button{
+  margin-top: 5px;
 }
 
 .nav-pills > li {
@@ -362,10 +421,6 @@ ul.nav-pills{
 
 .inside-content{
   float: left;
-}
-
-#hidden-htag{
-  display: none;
 }
 
 footer{

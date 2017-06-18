@@ -3,7 +3,7 @@ class RenameOldTableToNewTable < ActiveRecord::Migration[5.0]
   	rename_table :dodavatels, :suppliers
   	rename_table :miestnosts, :rooms
   	rename_table :registracia_u_dodavatelas, :registration_in_suppliers
-  	rename_table :scenar_spotrebicas, :scenario_of_appliances
+  	rename_table :scenar_spotrebicas, :scenarios
   	rename_table :scenars, :appliances
   	rename_table :spotrebics, :scenarios
   	rename_table :vykon_spotrebicas, :performance_of_appliances

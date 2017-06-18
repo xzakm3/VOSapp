@@ -1,0 +1,3 @@
+class ScenarioOfAppliancesController < ApplicationController
+
+end
