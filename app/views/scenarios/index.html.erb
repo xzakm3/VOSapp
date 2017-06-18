@@ -1,6 +1,10 @@
 <% provide(:title, 'Dashboard') %>
 <h1>Scenarios</h1>
-<div class = "row">
-  <%= link_to "Vytvor", new_user_scenario_path(current_user), class: "btn btn-primary", id: "new-scenario-button" %>
-</div>
+
+  <div class = "row">
+    <%= link_to "Vytvor", new_user_scenario_path(current_user), class: "btn btn-primary", id: "new-scenario-button" %>
+  </div>
+<% if @scenarios.empty? %>
+    <p class="no-entries">Nemáš vytvorené žiadne scenáre...</p>
+<% end %>
 <%= render partial: "scenarios" %>

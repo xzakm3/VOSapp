@@ -1,6 +1,8 @@
 <%= render partial: "bigModal" %>
 <%= render partial: "smallModal" %>
-<span id="rooms-span" class="<%= @rooms[0].name %>"></span>
+<span id="rooms-span" class="<%= if @rooms.any?
+                                   @rooms[0].name
+                                 end %>"></span>
 <div class="row">
   <div class="col-md-3">
     <!-- It can be fixed with bootstrap affix http://getbootstrap.com/javascript/#affix-->
@@ -13,7 +15,11 @@
       </ul>
     </div>
   </div>
-  <div class="table_entries col-md-9">
-    <%= render partial: "entries", locals: {hash_of_recrods: @hash_of_records } %>
+  <div class="col-md-9" id="table_entries">
+    <% if @rooms.any? %>
+      <%= render partial: "entries", locals: {hash_of_recrods: @hash_of_records } %>
+    <% else %>
+      <p class="no-entries">Nemáš uložené žiadne elektrické spotrebiče...</p>
+    <% end %>
   </div>
 </div>

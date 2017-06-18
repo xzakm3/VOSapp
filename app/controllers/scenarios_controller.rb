@@ -47,7 +47,7 @@ class ScenariosController < ApplicationController
       entry_room_ids.each do |entry_room_id|
         entry_room = EntryRoom.where(id: entry_room_id)[0]
         performance = entry_room.entry.performance_of_appliance.performance
-        i += (performance*1000)/U
+        i += ((performance/U)*entry_room.entry.count)
       end
       scenario.power = i
       if scenario.save == false
@@ -58,9 +58,9 @@ class ScenariosController < ApplicationController
         ups = entry_room.entry.count
         soa = ScenarioOfAppliance.new(number_of_up: ups, scenario_id: scenario.id, entry_room_id: entry_room_id)
         if soa.save
-          flash[:success] = "Vytvorili ste si scenár používaných spotrebičov. Pre náhľad choďte na podstránku Dashboard."
+          flash.now[:success] = "Vytvorili ste si scenár používaných spotrebičov. Pre náhľad choďte na podstránku Dashboard."
         else
-          flash[:danger] = "Nepodarilo sa vytvoriť scenár používaného spotrebiča."
+          flash.now[:danger] = "Nepodarilo sa vytvoriť scenár používaného spotrebiča."
         end
         h = 13
       end

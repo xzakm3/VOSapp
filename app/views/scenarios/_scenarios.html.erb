@@ -8,10 +8,13 @@
         <div class="scenario-information">
             <% scenario.scenario_of_appliances.each do |scenario_of_appliance| %>
                 <div class="row scenario-entry">
-                  <div class="col-md-3 col-xs-3">
+                  <div class="col-md-2 col-xs-2">
+                    <%= scenario_of_appliance.entry_room.room.name %>
+                  </div>
+                  <div class="col-md-2 col-xs-2">
                     <%= scenario_of_appliance.entry_room.entry.performance_of_appliance.appliance.name %>
                   </div>
-                  <div class="col-md-3 col-xs-3">
+                  <div class="col-md-2 col-xs-2">
                     <span><%= get_text(scenario_of_appliance.number_of_up) %> </span>
                   </div>
                 </div>

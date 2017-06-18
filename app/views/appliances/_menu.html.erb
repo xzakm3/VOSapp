@@ -1,20 +1,16 @@
-  <% @rooms.each_with_index do |room, index| %>
-      <% if index == 0 %>
-        <li class="active">
-      <% else %>
-         <li>
-      <% end %>
-        <%= link_to  user_appliances_path(current_user, room_id: room.id), remote: true, class: 'rooms-nav-link' do %>
-            <%= room.name %>
+  <% if @rooms != nil %>
+    <% @rooms.each_with_index do |room, index| %>
+        <% if index == 0 %>
+          <li class="active">
+        <% else %>
+           <li>
         <% end %>
-      </li>
+          <%= link_to  user_appliances_path(current_user, room_id: room.id), remote: true, class: 'rooms-nav-link' do %>
+              <%= room.name %>
+          <% end %>
+        </li>
+    <% end %>
   <% end %>
   <li id="add-button-li-background">
     <%= link_to "Pridaj", '#', id: 'add-button-li',  data: {toggle: 'modal', target: '#bigModal'}  %>
   </li>
-  <div id="text">
-
-  </div>
-  <div id="text2">
-
-  </div>

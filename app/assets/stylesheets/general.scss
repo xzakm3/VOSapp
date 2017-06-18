@@ -309,6 +309,15 @@ footer ul li {
   color: #ddd;
   float: right;
 }
+#table_entries{
+  text-align: center !important;
+}
+
+.no-entries{
+  margin-top: 50px;
+  text-align: center;
+  color: #bbb;
+}
 
 #remove-component{
   margin-left: 20px;
@@ -394,7 +403,7 @@ footer ul li {
   display: none;
 }
 
-#create-scenario-button{
+#create-scenario-button {
   margin-top: 5px;
 }
 

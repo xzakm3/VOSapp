@@ -1,9 +1,9 @@
 <% provide(:title, 'Appliances') %>
 <h1> Appliances </h1>
-<%= render partial: "smallModal" %>
-<%= render partial: "bigModal" %>
-<% if @hash_of_records != nil %>
+<% if @hash_of_records.any? %>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
       <%= render partial: "entries" %>
     </div>
+<% else %>
+    <p class="no-entries">Nemáš uložené žiadne elektrické spotrebiče...</p>
 <% end %>
