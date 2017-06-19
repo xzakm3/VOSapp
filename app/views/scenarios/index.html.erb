@@ -4,7 +4,8 @@
   <div class = "row">
     <%= link_to "Vytvor", new_user_scenario_path(current_user), class: "btn btn-primary", id: "new-scenario-button" %>
   </div>
-<% if @scenarios.empty? %>
+<% if @scenarios == nil or @scenarios.empty? %>
     <p class="no-entries">Nemáš vytvorené žiadne scenáre...</p>
+<% else %>
+    <%= render partial: "scenarios/scenarios" %>
 <% end %>
-<%= render partial: "scenarios" %>

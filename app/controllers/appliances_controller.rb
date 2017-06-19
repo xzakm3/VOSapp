@@ -40,6 +40,10 @@ class AppliancesController < ApplicationController
 		end
 	end
 
+	def update
+
+	end
+
 	def destroy
 		entry_room = EntryRoom.where(user_id: params[:user_id], entry_id: params[:entry_id], room_id: params[:room_id]).first
 		entry = entry_room.entry

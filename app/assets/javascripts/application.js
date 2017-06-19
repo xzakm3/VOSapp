@@ -32,5 +32,11 @@ $(document).on("click", ".nav-pills > li > a", function(e){
     $(this).parent().addClass("active");
 });
 
+$(document).on("click", ".update-appliance-button", function(e){
+    var appliance_element = $(e.target).closest('.appliance-entry').nodeName;
+    var jedna = $(appliance_element + "> div:nth_child(1)").text();
+    $("#text").html(appliance_element);
+    //$( "ul li:nth-child(2)" ).append( "<span> - 2nd!</span>" );
+});
 
 

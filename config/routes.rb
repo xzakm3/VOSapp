@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: :edit
   resources :password_resets,     only: [:new, :edit, :create, :update]
   resources :users do
-    resources :appliances, only: [:new, :index, :create, :destroy]
+    resources :appliances, only: [:new, :index, :create, :destroy, :update]
     resources :scenarios, only: [:new, :index, :create, :destroy]
     resources :scenario_of_appliances, only: [:new, :index, :create, :destroy]
   end

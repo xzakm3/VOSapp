@@ -1,5 +1,6 @@
 <%= render partial: "bigModal" %>
 <%= render partial: "smallModal" %>
+<%= render partial: "editModal" %>
 <span id="rooms-span" class="<%= if @rooms.any?
                                    @rooms[0].name
                                  end %>"></span>
@@ -13,6 +14,8 @@
       <ul class="nav nav-pills nav-stacked">
         <%= render partial: "menu", locals: {rooms: @rooms } %>
       </ul>
+
+
     </div>
   </div>
   <div class="col-md-9" id="table_entries">
@@ -22,4 +25,8 @@
       <p class="no-entries">Nemáš uložené žiadne elektrické spotrebiče...</p>
     <% end %>
   </div>
+</div>
+
+<div id="text">
+
 </div>
