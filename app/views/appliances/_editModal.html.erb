@@ -6,15 +6,14 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="editModalLabel">Uprav parametre spotrebiča</h4>
       </div>
-      <%= form_tag(user_appliances_path(current_user), remote: true) do %>
+      <%= form_tag(user_appliance_path(current_user,1), method: "patch", remote: true) do %>
           <div class="modal-body">
-            <%= label_tag :room, "Room" %>
-            <%= text_field_tag :room, params[:room], class: 'form-control' %>
+            <%= label_tag :name, "Name" %>
+            <%= text_field_tag :name, params[:name], class: 'form-control' %>
 
-            <%= fields_for :appliance do |builder| %>
-                <%= builder.label :name, "Name" %>
-                <%= builder.text_field :name, class: 'form-control' %>
-            <% end %>
+            <%= hidden_field_tag :entry_id, params[:entry_id], id: 'hidden-entry-id' %>
+            <%= hidden_field_tag :room_id, params[:room_id], id: 'hidden-room-id' %>
+            <%= hidden_field_tag :room, params[:room], id: 'hidden-room-name' %>
 
             <%= label_tag :performance, "Performance(W/h)" %>
             <%= number_field_tag :performance, params[:performance], class: 'form-control' %>
@@ -24,7 +23,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <%= submit_tag "Save", class: "btn btn-primary", id: "save-button" %>
+            <%= submit_tag "Update", class: "btn btn-primary", id: "save-button" %>
           </div>
       <% end %>
     </div><!-- /.modal-content -->

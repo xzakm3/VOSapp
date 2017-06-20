@@ -62,7 +62,6 @@ class ScenariosController < ApplicationController
         else
           flash.now[:danger] = "Nepodarilo sa vytvoriť scenár používaného spotrebiča."
         end
-        h = 13
       end
     end
     redirect_to(new_user_scenario_path(current_user))

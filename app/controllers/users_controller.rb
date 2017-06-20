@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 	def show
 		@user = User.find(params[:id])
     if (session[:user_id] != @user.id)
-      flash[:danger] = "You can not switch to another account without log in."
+      flash.now[:danger] = "You can not switch to another account without log in."
       redirect_to user_path(User.find(session[:user_id]))
     end
 	end
