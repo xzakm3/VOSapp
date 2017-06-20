@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618041328) do
+ActiveRecord::Schema.define(version: 20170620220456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,15 +21,15 @@ ActiveRecord::Schema.define(version: 20170618041328) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.integer "performance_of_appliance_id"
     t.integer "count"
+    t.integer "performance_of_appliance_id"
     t.index ["performance_of_appliance_id"], name: "index_entries_on_performance_of_appliance_id", using: :btree
   end
 
   create_table "entry_rooms", force: :cascade do |t|
-    t.integer "user_id"
     t.integer "entry_id"
     t.integer "room_id"
+    t.integer "user_id"
     t.index ["entry_id"], name: "index_entry_rooms_on_entry_id", using: :btree
     t.index ["room_id"], name: "index_entry_rooms_on_room_id", using: :btree
     t.index ["user_id"], name: "index_entry_rooms_on_user_id", using: :btree
@@ -59,16 +59,16 @@ ActiveRecord::Schema.define(version: 20170618041328) do
     t.text "name"
   end
 
-  create_table "scenarios", force: :cascade do |t|
+  create_table "scenario_of_appliances", force: :cascade do |t|
     t.integer "number_of_up"
-    t.integer "scenario_id"
     t.integer "entry_room_id"
+    t.integer "scenario_id"
     t.index ["entry_room_id"], name: "index_scenario_of_appliances_on_entry_room_id", using: :btree
     t.index ["scenario_id"], name: "index_scenario_of_appliances_on_scenario_id", using: :btree
   end
 
   create_table "scenarios", force: :cascade do |t|
-    t.decimal "power"
+    t.integer "power"
     t.integer "user_id"
     t.index ["user_id"], name: "index_scenarios_on_user_id", using: :btree
   end
@@ -102,9 +102,7 @@ ActiveRecord::Schema.define(version: 20170618041328) do
   add_foreign_key "entry_rooms", "rooms"
   add_foreign_key "entry_rooms", "users"
   add_foreign_key "performance_of_appliances", "appliances"
-  add_foreign_key "registration_in_suppliers", "suppliers"
-  add_foreign_key "registration_in_suppliers", "users"
-  add_foreign_key "scenarios", "entry_rooms"
-  add_foreign_key "scenarios", "scenarios"
+  add_foreign_key "scenario_of_appliances", "entry_rooms"
+  add_foreign_key "scenario_of_appliances", "scenarios"
   add_foreign_key "scenarios", "users"
 end

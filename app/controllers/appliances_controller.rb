@@ -207,10 +207,10 @@ class AppliancesController < ApplicationController
 		show_entries = 0
 		if params[:room_id]
 			show_entries = 1
-			@records = EntryRoom.joins(:room, :entry, "JOIN performance_of_appliances p ON performance_of_appliance_id = p.id", "JOIN scenarios a ON appliance_id = a.id").where("entry_rooms.user_id = ? AND entry_rooms.room_id = ?", @id, params[:room_id])
+			@records = EntryRoom.where(user_id: @id, room_id: params[:room_id])
 		elsif @rooms.any?
 			show_entries = 1
-			@records = EntryRoom.joins(:room, :entry, "JOIN performance_of_appliances p ON performance_of_appliance_id = p.id", "JOIN scenarios a ON appliance_id = a.id").where("entry_rooms.user_id = ? AND entry_rooms.room_id = ?", @id, @rooms[0].id)
+			@records = EntryRoom.where(user_id: @id, room_id: @rooms[0].id)
 		end
 		if show_entries == 1
 			@hash_of_records = {}
@@ -220,6 +220,8 @@ class AppliancesController < ApplicationController
 				end
 				@hash_of_records[record.room.name][record.entry.performance_of_appliance.appliance.name] = {appliance_id: record.entry.performance_of_appliance.appliance.id, entry_id: record.entry.id, room_id: record.room.id, performance: record.entry.performance_of_appliance.performance, count: record.entry.count}
 			end
+			h = 13
+			b = 4
 		end
 	end
 
