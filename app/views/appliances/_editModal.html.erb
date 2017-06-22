@@ -8,17 +8,17 @@
       </div>
       <%= form_tag(user_appliance_path(current_user,1), method: "patch", remote: true) do %>
           <div class="modal-body">
-            <%= label_tag :name, "Name" %>
+            <%= label_tag :name, "Názov spotrebiča" %>
             <%= text_field_tag :name, params[:name], class: 'form-control' %>
 
             <%= hidden_field_tag :entry_id, params[:entry_id], id: 'hidden-entry-id' %>
             <%= hidden_field_tag :room_id, params[:room_id], id: 'hidden-room-id' %>
             <%= hidden_field_tag :room, params[:room], id: 'hidden-room-name' %>
 
-            <%= label_tag :performance, "Performance(W/h)" %>
+            <%= label_tag :performance, "Výkon(W/h)" %>
             <%= number_field_tag :performance, params[:performance], class: 'form-control' %>
 
-            <%= label_tag :count %>
+            <%= label_tag :count, "Počet" %>
             <%= number_field_tag :count, params[:count], class: 'form-control' %>
           </div>
           <div class="modal-footer">

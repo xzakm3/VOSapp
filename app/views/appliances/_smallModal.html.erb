@@ -9,16 +9,16 @@
       <%= form_tag(user_appliances_path(current_user), remote: true) do %>
           <div class="modal-body">
             <%= fields_for :appliance do |builder| %>
-                <%= builder.label :name, "Name" %>
+                <%= builder.label :name, "Názov spotrebiča" %>
                 <%= builder.text_field :name, class: 'form-control' %>
             <% end %>
 
             <%= hidden_field_tag :room, params[:room], id: 'hidden-room-name' %>
 
-            <%= label_tag :performance, "Performance(W/h)" %>
+            <%= label_tag :performance, "Výkon(W/h)" %>
             <%= number_field_tag :performance, params[:performance], class: 'form-control' %>
 
-            <%= label_tag :count %>
+            <%= label_tag :count, "Počet" %>
             <%= number_field_tag :count, params[:count], class: 'form-control' %>
           </div>
           <div class="modal-footer">
