@@ -79,7 +79,7 @@ class User < ApplicationRecord
 			self.email = email.downcase
 		end
 
-		def downcase_email
+		def downcase_address
 			self.address = address.downcase
 		end
 
