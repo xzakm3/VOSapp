@@ -22,10 +22,10 @@ class AppliancesController < ApplicationController
 			text = params[:room]
 			text = text.strip
 			params[:room] = text
-			@appliance = Appliance.where(name: params[:appliance][:name]).first_or_create(appliance_params)
+			@appliance = Appliance.where(name: params[:appliance][:name].downcase!).first_or_create(appliance_params)
 			@performance_of_appliance = @appliance.performance_of_appliances.where(performance_of_appliance_params).first_or_create(performance_of_appliance_params)
 			@entry = @performance_of_appliance.entries.where(entry_params).first_or_create(entry_params)
-			@room = Room.where(name: params[:room]).first_or_create(name: params[:room])
+			@room = Room.where(name: params[:room].downcase!).first_or_create(name: params[:room])
 			user.entry_rooms.where(user_id: user.id, entry_id: @entry.id, room_id: @room.id).first_or_create(user_id: user.id, entry_id: @entry.id, room_id: @room.id)
 		end
 		get_my_rooms
@@ -58,10 +58,10 @@ class AppliancesController < ApplicationController
 		performance_can_delete = 0
 		entry_can_delete = 0
 		EntryRoom.transaction do
-			if (appliance.name != params[:name])
-				if ((appliance_existing = Appliance.where(name: params[:name])) && (appliance_existing.empty?))
+			if (appliance.name != params[:name].downcase!)
+				if ((appliance_existing = Appliance.where(name: params[:name].downcase!)) && (appliance_existing.empty?))
 					if(appliance.performance_of_appliances.length == 1)
-						appliance.update_attributes(name: params[:name])
+						appliance.update_attributes(name: params[:name].downcase!)
 						appliance_id = appliance.id
 					else
 						appliance_id = Appliance.create(name: params[:name]).id
@@ -209,7 +209,9 @@ class AppliancesController < ApplicationController
 				get_records_for(params[:room_id])
 				format.js{render 'appliances/showEntries'}
 			else
-				get_records_for(@rooms[0].id)
+				if @rooms.any?
+					get_records_for(@rooms[0].id)
+				end
 				format.html{render 'index' }
 			end
 		end
