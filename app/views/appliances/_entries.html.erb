@@ -10,8 +10,8 @@
     </div>
 </div>
 <div id="body-table">
-    <% if @hash_of_records != nil %>
-      <% @hash_of_records.each do |key, appliances| %>
+    <% if @records != nil %>
+      <% @records.each do |key, appliances| %>
           <% appliances.each do |name, properties| %>
               <div class="row appliance-entry">
                 <div class="col-md-3 col-xs-4">

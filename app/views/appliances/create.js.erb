@@ -5,6 +5,7 @@ if($('#bigModal').is(':visible')){
 
     $('#bigModal').modal('hide')
         .find("input[type=text],input[type=number]").val('');
+    $('#bigModal #bigModalLabel').text('');
 }
 else if($('#smallModal').is(':visible')){
     var room_in_modal = $( '#smallModalLabel' ).text();

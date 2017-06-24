@@ -1,6 +1,6 @@
   <% i = 0 %>
   <%= form_tag(user_scenarios_path(current_user), remote: true) do %>
-    <% @hash_of_records.each do |key, appliances| %>
+    <% @records.each do |key, appliances| %>
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">

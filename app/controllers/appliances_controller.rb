@@ -1,29 +1,24 @@
 class AppliancesController < ApplicationController
 	include AppliancesHelper
-	U = 230
 
 	before_action :index, only: :new
-	before_action :get_id, only: [:index, :create]
+	before_action :get_my_rooms, only: :index
 
 	def get_records_for(room_id)
-		@id = session[:user_id]
-		records_for_specific_room = EntryRoom.joins(:room, :entry, "JOIN performance_of_appliances p ON performance_of_appliance_id = p.id", "JOIN scenarios a ON appliance_id = a.id").where("entry_rooms.user_id = ? AND entry_rooms.room_id = ?", @id, room_id)
-		@hash_for_specific_record = {}
+		id = session[:user_id]
+		records_for_specific_room = EntryRoom.where(user_id: id, room_id: room_id)
+		@records = {}
 		records_for_specific_room.each do |record|
-			if @hash_for_specific_record[record.room.name] == nil
-				@hash_for_specific_record[record.room.name] = {}
+			if @records[record.room.name] == nil
+				@records[record.room.name] = {}
 			end
-			@hash_for_specific_record[record.room.name][record.entry.performance_of_appliance.appliance.name] = {appliance_id: record.entry.performance_of_appliance.appliance.id, entry_id: record.entry.id, room_id: record.room.id, performance: record.entry.performance_of_appliance.performance, count: record.entry.count}
+			@records[record.room.name][record.entry.performance_of_appliance.appliance.name] = {appliance_id: record.entry.performance_of_appliance.appliance.id, entry_id: record.entry.id, room_id: record.room.id, performance: record.entry.performance_of_appliance.performance, count: record.entry.count}
 		end
-	end
-
-	def new
 	end
 
 	def create
 		user = current_user
 		Appliance.transaction do
-			params[:room]
 			text = params[:room]
 			text = text.strip
 			params[:room] = text
@@ -32,9 +27,9 @@ class AppliancesController < ApplicationController
 			@entry = @performance_of_appliance.entries.where(entry_params).first_or_create(entry_params)
 			@room = Room.where(name: params[:room]).first_or_create(name: params[:room])
 			user.entry_rooms.where(user_id: user.id, entry_id: @entry.id, room_id: @room.id).first_or_create(user_id: user.id, entry_id: @entry.id, room_id: @room.id)
-			flash.now[:success] = "Successfull adition of new appliance"
-			get_all_records
 		end
+		get_my_rooms
+		get_records_for(@room.id)
 		respond_to do |format|
 			format.js {render 'appliances/create'}
 		end
@@ -159,7 +154,7 @@ class AppliancesController < ApplicationController
 				Entry.find(entry.id).destroy
 			end
 		end
-		get_all_records
+		get_records_for(params[:room_id])
 		respond_to do |format|
 			format.js {render 'appliances/update'}
 		end
@@ -195,48 +190,26 @@ class AppliancesController < ApplicationController
 				appliance.destroy
 			end
 		end
-		get_records_for(room[:id])
+		get_records_for(params[:room_id])
 		respond_to do |format|
 			format.js {render 'appliances/destroy'}
 		end
 	end
 
-	def get_all_records
-		get_id
-		get_all_rooms
-		show_entries = 0
-		if params[:room_id]
-			show_entries = 1
-			@records = EntryRoom.where(user_id: @id, room_id: params[:room_id])
-		elsif @rooms.any?
-			show_entries = 1
-			@records = EntryRoom.where(user_id: @id, room_id: @rooms[0].id)
-		end
-		if show_entries == 1
-			@hash_of_records = {}
-			@records.each do |record|
-				if @hash_of_records[record.room.name] == nil
-					@hash_of_records[record.room.name] = {}
-				end
-				@hash_of_records[record.room.name][record.entry.performance_of_appliance.appliance.name] = {appliance_id: record.entry.performance_of_appliance.appliance.id, entry_id: record.entry.id, room_id: record.room.id, performance: record.entry.performance_of_appliance.performance, count: record.entry.count}
-			end
-			h = 13
-			b = 4
-		end
-	end
-
-	def get_all_rooms
-		@rooms = EntryRoom.joins(:room).where("entry_rooms.user_id = ?", @id).distinct("entry_rooms.room_id")
+	def get_my_rooms
+		id = session[:user_id]
+		@rooms = EntryRoom.joins(:room).where("entry_rooms.user_id = ?", id).distinct("entry_rooms.room_id")
 		@rooms = @rooms.map { |record|  record.room}
 		@rooms.uniq!
 	end
 
 	def index
-		get_all_records
 		respond_to do |format|
 			if params[:room_id]
+				get_records_for(params[:room_id])
 				format.js{render 'appliances/showEntries'}
 			else
+				get_records_for(@rooms[0].id)
 				format.html{render 'index' }
 			end
 		end
@@ -244,10 +217,6 @@ class AppliancesController < ApplicationController
 
 
 	private
-
-	def get_id
-		@id = session[:user_id]
-	end
 
 	def appliance_params
 		params.require(:appliance).permit(:name)

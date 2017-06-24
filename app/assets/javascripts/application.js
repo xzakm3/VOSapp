@@ -59,4 +59,9 @@ $(document).on("click", ".update-appliance-button", function(e){
     $('#editModal #hidden-room-name').val($.trim(roomObject.text()));
 });
 
+$(document).on("change", "#bigModal input#room", function(){
+        $('#bigModal #bigModalLabel').text($(this).val());
+});
+
+
 
