@@ -15,7 +15,7 @@
           <% appliances.each do |name, properties| %>
               <div class="row appliance-entry">
                 <div class="col-md-3 col-xs-3">
-                  <div><%= name %></div>
+                  <div><%= name.capitalize %></div>
                 </div>
                 <div class="col-md-3 col-xs-4">
                   <div class="appliance-properties-text"><%= properties[:performance] %></div>

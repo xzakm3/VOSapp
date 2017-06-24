@@ -6,7 +6,7 @@
            <li>
         <% end %>
           <%= link_to  user_appliances_path(current_user, room_id: room.id), remote: true, class: 'rooms-nav-link' do %>
-              <%= room.name %>
+              <%= room.name.capitalize %>
           <% end %>
         </li>
     <% end %>
