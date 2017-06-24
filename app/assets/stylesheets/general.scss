@@ -323,3 +323,15 @@ footer{
 }
 
 
+@media (max-width: 535px) {
+  .appliance-entry div.col-md-3{
+    line-height: 2 !important;
+    min-height: 50px;
+  }
+
+  .scenario-entry{
+    margin: 15px 0px !important;
+  }
+}
+
+
