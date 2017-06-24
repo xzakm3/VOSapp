@@ -2,7 +2,7 @@
     <div class="col-md-3 col-xs-3">
       <b>Názov</b>
     </div>
-    <div class="col-md-3 col-xs-3">
+    <div class="col-md-3 col-xs-4">
       <b>Výkon(W/h)</b>
     </div>
     <div class="col-md-3 col-xs-3">
@@ -14,10 +14,10 @@
       <% @records.each do |key, appliances| %>
           <% appliances.each do |name, properties| %>
               <div class="row appliance-entry">
-                <div class="col-md-3 col-xs-4">
+                <div class="col-md-3 col-xs-3">
                   <%= name %>
                 </div>
-                <div class="col-md-3 col-xs-2">
+                <div class="col-md-3 col-xs-3">
                   <%= properties[:performance] %>
                 </div>
                 <div class="col-md-3 col-xs-2">

@@ -1,3 +1,66 @@
 // Place all the styles related to the Scenarios controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.scenario-information{
+  border-left: 5px solid #eee;
+  padding-left: 10px;
+  margin-top: 20px;
+}
+
+.scenario-around{
+  padding: 20px 15px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px 4px 0 0;
+  margin-top: 20px;
+}
+
+.important-text{
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.result-around{
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  border-top: none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.result-line{
+  padding: 12px 15px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.result-text{
+  color: #2f6f9f;
+  padding-left: 5px;
+}
+
+.scenario-entry{
+  margin: 5px 0px;
+}
+
+#create-scenario-button {
+  margin-top: 5px;
+}
+
+
+#new-scenario-button{
+  float: right;
+  margin-right: 15px;
+}
+
+
+.deletion-scenario{
+  color: #ddd;
+  float: right;
+}

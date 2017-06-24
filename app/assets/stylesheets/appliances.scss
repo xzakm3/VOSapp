@@ -1,3 +1,150 @@
 // Place all the styles related to the appliances controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+
+.head-of-appliance-entry {
+  padding-top: 10px;
+}
+
+.appliance-entry:nth-child(odd){
+  background: #f7f7f9;
+}
+
+.appliance-entry{
+  background-color:white;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+}
+
+.appliance-entry:hover{
+  background-color: #f2f2f2;
+}
+
+.appliance-entry, .head-of-appliance-entry{
+  line-height: 50px;
+  border-top: 1px solid #ddd;
+  text-align: center;
+}
+
+.UD-components{
+  text-align: right;
+  padding-right: 50px;
+}
+
+
+.collapsible-link{
+  padding-right: 80%;
+  text-decoration: none;
+}
+
+.collapsible-link:active, .collapsible-link:focus{
+  outline: none;
+}
+
+.collapsible-link:hover{
+  text-decoration: none;
+}
+
+
+.add-buttons{
+  padding-bottom: 3px;
+}
+
+
+#table_entries{
+  text-align: center !important;
+}
+
+.appliance-entry:nth-child(2n+1){
+  background: #f7f7f9;
+}
+
+
+#remove-component{
+  margin-left: 20px;
+}
+
+#save-button{
+  width: 13%;
+}
+
+
+
+#add-button-bottom, .add-buttons{
+  float: right;
+  margin-right: 15px;
+  border: none;
+  background: transparent;
+  padding: 0px 0px;
+}
+
+#add-button-row-background{
+  text-align: center;
+  line-height: 40px;
+  border: 2px dashed;
+  border-radius: 5px;
+  border-color: #bbb;
+  margin-top: 5px;
+}
+
+#add-button-row{
+  font-weight: bold;
+  color: #bbb;
+  font-size: 18px;
+  padding-left: 40%;
+  padding-right: 40%;
+  outline: none;
+}
+
+#add-button-li-background{
+  text-align: center;
+  border: 2px dashed;
+  border-radius: 5px;
+  border-color: #bbb;
+  margin-top: 7px !important;
+  background: transparent !important;
+}
+
+#add-button-li{
+  font-weight: bold;
+  color: #bbb;
+  font-size: 15px;
+  padding-left: 30%;
+  padding-right: 30%;
+  outline: none;
+  background-color: transparent;
+}
+
+
+#add-button-row:hover{
+  text-decoration: none;
+}
+
+#add-button-li:hover{
+  background: transparent !important;
+}
+
+
+
+#add-button-bottom:hover{
+  color:blue;
+}
+
+#add-component:hover{
+  color: blue;
+}
+
+.appliance-entry, #add-button-row-background {
+  margin-left: -5px !important;
+  margin-right: -5px !important;
+}
+
+@media (max-width: 600px) {
+  #save-button{
+    width: 23% !important;
+  }
+}

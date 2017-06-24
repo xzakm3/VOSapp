@@ -205,118 +205,40 @@ footer ul li {
   }
 }
 
-.head-of-appliance-entry {
-  padding-top: 10px;
-}
-
-.appliance-entry:nth-child(odd){
-  background: #f7f7f9;
-}
-
-.appliance-entry{
-  background-color:white;
-  -webkit-transition: background-color 0.5s ease-out;
-  -moz-transition: background-color 0.5s ease-out;
-  -o-transition: background-color 0.5s ease-out;
-  transition: background-color 0.5s ease-out;
-}
-
-.appliance-entry:hover{
-  background-color: #f2f2f2;
-}
-
-.appliance-entry, .head-of-appliance-entry{
-  line-height: 50px;
-  border-top: 1px solid #ddd;
-  text-align: center;
-}
-
-.UD-components{
-  text-align: right;
-  padding-right: 50px;
-}
-
-
-.collapsible-link{
-  padding-right: 80%;
-  text-decoration: none;
-}
-
-.collapsible-link:active, .collapsible-link:focus{
-  outline: none;
-}
-
-.collapsible-link:hover{
-  text-decoration: none;
-}
-
-
-.add-buttons{
-  padding-bottom: 3px;
-}
-
-.scenario-information{
-  border-left: 5px solid #eee;
-  padding-left: 10px;
-  margin-top: 20px;
-}
-
-.scenario-around{
-  padding: 20px 15px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px 4px 0 0;
-  margin-top: 20px;
-}
-
-.important-text{
-  font-size: 13px;
-  text-transform: uppercase;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
-
-.result-around{
-  background-color: #f7f7f9;
-  border: 1px solid #e1e1e8;
-  border-top: none;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
-.result-line{
-  padding: 12px 15px;
-  margin: 0;
-  font-size: 12px;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.result-text{
-  color: #2f6f9f;
-  padding-left: 5px;
-}
-
-.scenario-entry{
-  margin: 5px 0px;
-}
-
-.appliance-entry:nth-child(2n+1){
-  background: #f7f7f9;
-}
-
-.deletion-scenario{
-  color: #ddd;
-  float: right;
-}
-#table_entries{
-  text-align: center !important;
-}
-
 .no-entries{
   margin-top: 50px;
   text-align: center;
   color: #bbb;
+}
+
+.navbar-default{
+  padding: 0px 15px;
+}
+
+.navbar-toggle{
+  border: none;
+}
+
+.navbar-toggle, .collapsed {
+  bacground-color: #555 !important;
+}
+
+.navbar-toggle:focus{
+  background-color: #ddd !important;
+}
+
+
+.nav-pills > li {
+  margin-top: 0px !important;
+}
+
+.nav-pills > li > a{
+  border-radius: 0px;
+  outline: none;
+}
+
+.navbar-brand{
+  font-size: 16px;
 }
 
 .navbar-inverse{
@@ -372,95 +294,6 @@ footer ul li {
   background-color: #888 !important;
 }
 
-#remove-component{
-  margin-left: 20px;
-}
-
-#save-button{
-  width: 13%;
-}
-
-#add-button-bottom, .add-buttons{
-  float: right;
-  margin-right: 15px;
-  border: none;
-  background: transparent;
-  padding: 0px 0px;
-}
-
-#add-button-row-background{
-  text-align: center;
-  line-height: 40px;
-  border: 2px dashed;
-  border-radius: 5px;
-  border-color: #bbb;
-  margin-top: 5px;
-}
-
-#add-button-row{
-  font-weight: bold;
-  color: #bbb;
-  font-size: 18px;
-  padding-left: 40%;
-  padding-right: 40%;
-  outline: none;
-}
-
-#add-button-li-background{
-  text-align: center;
-  border: 2px dashed;
-  border-radius: 5px;
-  border-color: #bbb;
-  margin-top: 7px !important;
-  background: transparent !important;
-}
-
-#add-button-li{
-  font-weight: bold;
-  color: #bbb;
-  font-size: 15px;
-  padding-left: 30%;
-  padding-right: 30%;
-  outline: none;
-  background-color: transparent;
-}
-
-
-#add-button-row:hover{
-  text-decoration: none;
-}
-
-#add-button-li:hover{
-  background: transparent !important;
-}
-
-
-
-#add-button-bottom:hover{
-  color:blue;
-}
-
-#add-component:hover{
-  color: blue;
-}
-
-#plus-component{
-  padding-top: 3px;
-}
-
-#new-scenario-button{
-  float: right;
-  margin-right: 15px;
-}
-
-#hidden-htag{
-  display: none;
-}
-
-#create-scenario-button {
-  margin-top: 5px;
-}
-
 .nav-pills > li {
   margin-top: 0px !important;
 }
@@ -470,22 +303,14 @@ footer ul li {
     outline: none;
 }
 
-footer{
-  clear: left;
-}
-.appliance-entry, #add-button-row-background {
-  margin-left: -5px !important;
-  margin-right: -5px !important;
-}
 
 .navbar-brand{
   font-size: 16px;
 }
 
-@media (max-width: 600px) {
-  #save-button{
-    width: 23% !important;
-  }
+
+footer{
+  clear: left;
 }
 
 /************/
