@@ -5,6 +5,8 @@ class User < ApplicationRecord
 	has_many :registration_in_suppliers
 	before_create :create_activation_digest
 	before_save   :downcase_email
+	before_save :downcase_address
+
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, uniqueness:  { case_sensitive: false }, 
 					  presence: true, 
@@ -75,6 +77,10 @@ class User < ApplicationRecord
 
 		def downcase_email
 			self.email = email.downcase
+		end
+
+		def downcase_email
+			self.address = address.downcase
 		end
 
 end
