@@ -4,42 +4,86 @@
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
+              <% if i == 0 %>
+              <a role="button" class="collapsible-link" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= i %>" aria-expanded="true" aria-controls="collapse<%= i %>">
+                <%= key %>
+              </a>
+              <% else %>
               <a role="button" class="collapsible-link" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= i %>" aria-expanded="false" aria-controls="collapse<%= i %>">
                 <%= key %>
               </a>
+              <% end %>
             </h4>
           </div>
-          <div id="collapse<%= i %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-              <div class="row head-of-appliance-entry">
-                <div class="col-md-3 col-xs-4">
-                  <b>Názov</b>
-                </div>
-                <div class="col-md-3 col-xs-4">
-                  <b>Výkon(W/h)</b>
-                </div>
-                <div class="col-md-3 col-xs-2">
-                  <b>Počet</b>
-                </div>
-              </div>
-              <% appliances.each do |name, properties| %>
-                  <div class="row appliance-entry">
+          <% if i == 0 %>
+          <% else %>
+
+          <% end %>
+          <% if i == 0 %>
+              <div id="collapse<%= i %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" aria-expanded="true">
+                <div class="panel-body">
+                  <div class="row head-of-appliance-entry">
                     <div class="col-md-3 col-xs-4">
-                      <div><%= name.capitalize %></div>
+                      <b>Názov</b>
                     </div>
                     <div class="col-md-3 col-xs-4">
-                      <div class="performance-text"><%= properties[:performance] %></div>
+                      <b>Výkon(W/h)</b>
                     </div>
                     <div class="col-md-3 col-xs-2">
-                      <div><%= properties[:count] %></div>
-                    </div>
-                    <div class="col-md-3 col-xs-2 UD-components">
-                          <%= check_box_tag 'entry_rooms[]', EntryRoom.where(user_id: current_user, entry_id: properties[:entry_id], room_id: properties[:room_id])[0].id %>
+                      <b>Počet</b>
                     </div>
                   </div>
-              <% end %>
-            </div>
-          </div>
+                  <% appliances.each do |name, properties| %>
+                      <div class="row appliance-entry">
+                        <div class="col-md-3 col-xs-4">
+                          <div><%= name.capitalize %></div>
+                        </div>
+                        <div class="col-md-3 col-xs-4">
+                          <div class="performance-text"><%= properties[:performance] %></div>
+                        </div>
+                        <div class="col-md-3 col-xs-2">
+                          <div><%= properties[:count] %></div>
+                        </div>
+                        <div class="col-md-3 col-xs-2 UD-components">
+                          <%= check_box_tag 'entry_rooms[]', EntryRoom.where(user_id: current_user, entry_id: properties[:entry_id], room_id: properties[:room_id])[0].id %>
+                        </div>
+                      </div>
+                  <% end %>
+                </div>
+              </div>
+          <% else %>
+              <div id="collapse<%= i %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <div class="row head-of-appliance-entry">
+                    <div class="col-md-3 col-xs-4">
+                      <b>Názov</b>
+                    </div>
+                    <div class="col-md-3 col-xs-4">
+                      <b>Výkon(W/h)</b>
+                    </div>
+                    <div class="col-md-3 col-xs-2">
+                      <b>Počet</b>
+                    </div>
+                  </div>
+                  <% appliances.each do |name, properties| %>
+                      <div class="row appliance-entry">
+                        <div class="col-md-3 col-xs-4">
+                          <div><%= name.capitalize %></div>
+                        </div>
+                        <div class="col-md-3 col-xs-4">
+                          <div class="performance-text"><%= properties[:performance] %></div>
+                        </div>
+                        <div class="col-md-3 col-xs-2">
+                          <div><%= properties[:count] %></div>
+                        </div>
+                        <div class="col-md-3 col-xs-2 UD-components">
+                          <%= check_box_tag 'entry_rooms[]', EntryRoom.where(user_id: current_user, entry_id: properties[:entry_id], room_id: properties[:room_id])[0].id %>
+                        </div>
+                      </div>
+                  <% end %>
+                </div>
+              </div>
+          <% end %>
         </div>
         <% i += 1 %>
     <% end %>

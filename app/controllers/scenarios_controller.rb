@@ -47,7 +47,7 @@ class ScenariosController < ApplicationController
         ups = entry_room.entry.count
         soa = ScenarioOfAppliance.new(number_of_up: ups, scenario_id: scenario.id, entry_room_id: entry_room_id)
         if soa.save
-          flash[:success] = "Vytvorili ste si scenár používaných spotrebičov. Pre náhľad choďte na podstránku Dashboard."
+          flash[:success] = "Vytvorili ste si scenár používaných spotrebičov. Pre náhľad choďte na stránku Domov."
         else
           flash[:danger] = "Nepodarilo sa vytvoriť scenár používaného spotrebiča."
         end

@@ -1,6 +1,6 @@
 class AppliancesController < ApplicationController
 	include AppliancesHelper
-
+	U = 230
 	before_action :index, only: :new
 	before_action :get_my_rooms, only: :index
 
@@ -39,12 +39,15 @@ class AppliancesController < ApplicationController
 	end
 
 	def update_scenarios(entry_room, old_count, new_count, old_performance, new_performance)
-		entry_room.scenario_of_appliances.each do |scenario_of_appliance|
-			scenario_of_appliance.update_attributes(number_of_up: new_count)
-			scenario = scenario_of_appliance.scenario
-			power = scenario.power - ((old_performance/U)*old_count) + ((new_performance/U)*new_count)
-			scenario.update_attributes(power: power)
+		if entry_room.scenario_of_appliances.any?
+			entry_room.scenario_of_appliances.each do |scenario_of_appliance|
+				scenario_of_appliance.update_attributes(number_of_up: new_count)
+				scenario = scenario_of_appliance.scenario
+				power = scenario.power - ((old_performance/U)*old_count) + ((new_performance/U)*new_count)
+				scenario.update_attributes(power: power)
+			end
 		end
+
 	end
 
 	def update
@@ -64,8 +67,9 @@ class AppliancesController < ApplicationController
 			if (appliance.name != params[:name].downcase!)
 				if ((appliance_existing = Appliance.where(name: params[:name].downcase!)) && (appliance_existing.empty?))
 					if(appliance.performance_of_appliances.length == 1)
-						appliance.update_attributes(name: params[:name].downcase!)
+						appliance.update_attributes(name: params[:name])
 						appliance_id = appliance.id
+
 					else
 						appliance_id = Appliance.create(name: params[:name]).id
 					end

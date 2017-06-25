@@ -7,10 +7,10 @@
   <%= f.label :address, "Adresa bydliska" %>
   <%= f.text_field :address, class: 'form-control' %>
 
-  <%= f.label :password %>
+  <%= f.label :password, "Heslo" %>
   <%= f.password_field :password, class: 'form-control' %>
 
-  <%= f.label :password_confirmation %>
+  <%= f.label :password_confirmation, "Potvrď heslo" %>
   <%= f.password_field :password_confirmation, class: 'form-control' %>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary" %>
