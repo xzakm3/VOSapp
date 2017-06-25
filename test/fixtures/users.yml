@@ -1,12 +1,8 @@
 test:
-  id: 1269834
-  email: test@test.test
-  address: test
-  password_digest: <%= User.digest('testtest') %>
+  id: 1
+  email: zakyz.martin@gmail.com
+  address: kasmirska 12
+  password_digest: <%= User.digest('Dominecko1234') %>
+  activated: true
 
-testik:
-  id: 1269835
-  email: testik@testik.testik
-  address: testik
-  password_digest: <%= User.digest('testiktestik') %>
 

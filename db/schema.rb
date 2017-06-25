@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170624213643) do
+ActiveRecord::Schema.define(version: 20170625124742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170624213643) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.integer "count"
+    t.integer "count",                       null: false
     t.integer "performance_of_appliance_id"
     t.index ["performance_of_appliance_id"], name: "index_entries_on_performance_of_appliance_id", using: :btree
   end
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170624213643) do
   end
 
   create_table "performance_of_appliances", force: :cascade do |t|
-    t.integer "performance"
+    t.integer "performance",  null: false
     t.integer "appliance_id"
     t.index ["appliance_id"], name: "index_performance_of_appliances_on_appliance_id", using: :btree
     t.index ["performance"], name: "index_performance_of_appliances_on_performance", using: :btree
