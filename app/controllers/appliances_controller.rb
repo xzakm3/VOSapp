@@ -22,11 +22,12 @@ class AppliancesController < ApplicationController
 		PerformanceOfAppliance.transaction do
 			text = params[:room]
 			text = text.strip
-			params[:room] = text
+			params[:room] = text.downcase
 			@appliance = Appliance.where(name: params[:appliance][:name].downcase!).first_or_create(appliance_params)
 			@performance_of_appliance = @appliance.performance_of_appliances.where(performance_of_appliance_params).first_or_create!(performance_of_appliance_params)
 			@entry = @performance_of_appliance.entries.where(entry_params).first_or_create!(entry_params)
-			@room = Room.where(name: params[:room].downcase!).first_or_create(name: params[:room])
+			@room = Room.where(name: params[:room]).first_or_create(name: params[:room])
+
 			user.entry_rooms.where(user_id: user.id, entry_id: @entry.id, room_id: @room.id).first_or_create(user_id: user.id, entry_id: @entry.id, room_id: @room.id)
 
 		end
