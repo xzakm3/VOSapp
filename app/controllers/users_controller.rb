@@ -68,7 +68,7 @@ class UsersController < ApplicationController
     	@user = User.new(user_params)    # Not the final implementation!
     	if @user.save
            @user.activate
-      		 flash[:info] = "Please check your email to activate your account!"
+      		 flash[:info] = "Môžete sa prihlásiť."
            redirect_to(root_path)
     	else
       	   render 'new'

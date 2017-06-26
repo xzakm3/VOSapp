@@ -23,7 +23,7 @@
     <tbody>
     <% flag = 0 %>
     <% @amper_price_west.each do |key, value| %>
-      <% if @scenarios.any? && flag == 0 && 3*key > @scenarios[0].power %>
+      <% if @scenarios.any? && flag == 0 && 3*key - 1 > @scenarios[0].power %>
         <tr class="warning">
           <td><b>3x<%= key %> A</b></td>
           <td><b><%= value %> €</b></td>
@@ -52,7 +52,7 @@
     <tbody>
     <% flag = 0 %>
     <% @amper_price_east.each do |key, value| %>
-        <% if @scenarios.any? && flag == 0 && 3*key > @scenarios[0].power %>
+        <% if @scenarios.any? && flag == 0 && 3*key - 2 > @scenarios[0].power %>
             <tr class="warning">
               <td><b>3x<%= key %> A</b></td>
               <td><b><%= value %> €</b></td>

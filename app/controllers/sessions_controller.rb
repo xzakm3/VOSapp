@@ -11,8 +11,8 @@ class SessionsController < ApplicationController
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
         redirect_back_or user_path(current_user)
       else
-        message = "Account not activated."
-        message+= "Check your email address for the activation link."
+        message = "Účet aktivovaný."
+        message+= "Môžete sa prihlásiť."
         flash[:warning] = message
         redirect_to(root_path)  
       end		
